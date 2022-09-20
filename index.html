@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Rumah saya</title>
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		.leaflet-container {
+			height: 1000px;
+			width: 1000px;
+			max-width: 100%;
+			max-height: 100%;		
+		}
+		header {
+  background-color: rgb(123, 133, 167);
+  padding: 10px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+nav {
+  float: left;
+  width: 15%;
+  height: 420px; /* only for demonstration, should be removed */
+  background: #ccc;
+  padding: 20px;
+}
+article {
+  float: left;
+  padding: 20px;
+  width: 1065px;
+  background-color: #f1f1f1;
+  height: 420px; /* only for demonstration, should be removed */
+}
+
+	</style>
+
+	
+</head>
+<body>
+	<header>
+	
+		<h2 style="font-family:Cursive;">Peta Persebaran Pesawahan</h2>
+	  </header>
+	  <section>
+		<nav>
+		<img src="./ikon/utara.png" width="200" height="200" margin-left="2px">
+		<h3 style="text-align: center;">Iman Nurpalah</h3>
+		<h3 style="text-align: center;">20/464422/SV/18741</h3>
+		</nav>
+		
+		<article>
+		  
+			<div id="map" style="width: 1065px; height: 420px; ;"></div>
+	  
+		</article>
+		  
+	  </section>
+
+<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+<script>
+	var map = L.map('map').setView([-7.188362, 108.373916], 15);
+
+	var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 50,
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+	}).addTo(map);
+	var firefoxIcon = L.icon({
+        iconUrl: "./ikon/home.svg",
+        iconSize: [25, 40], // size of the icon
+        });
+
+    L.marker([-7.186262, 108.382081], {icon: firefoxIcon}).bindPopup('Rumah Saya nich').addTo(map);
+
+	
+
+L.tileLayer.wms("https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi", {
+    	layers: 'nexrad-n0r-900913',
+        format: 'image/png',
+        transparent: true,
+        attribution: "Iman Nurpalah SIG WEB"
+    }).addTo(map);
+
+	var firefoxIcon = L.icon({
+        iconUrl: "./ikon/sawah.svg",
+        iconSize: [25, 40], // size of the icon
+        });
+
+    L.marker([-7.184996, 108.384398], {icon: firefoxIcon}).bindPopup('Pesawahan Cikakak').addTo(map);
+    // define array of points for polygon
+    var area = [ [-7.185352, 108.381723],[-7.185203, 108.382861],[-7.184500, 108.382560] ,[-7.184852, 108.384459],[-7.182723, 108.383397],[-7.183063, 108.382088],[-7.182898, 108.382142],[-7.182470, 108.383101],[-7.182698, 108.383771],[-7.185113, 108.384934],[-7.185241, 108.384206],[-7.185580, 108.382868]];
+
+    // add polygon from area array points to map with some basic styling
+    L.polygon(area,{color:'green',opacity:.6}).addTo(map);
+
+	var firefoxIcon = L.icon({
+        iconUrl: "./ikon/sawah.svg",
+        iconSize: [25, 40], // size of the icon
+        });
+
+    L.marker([-7.188846, 108.382671], {icon: firefoxIcon}).bindPopup('Pesawahan Cinangka').addTo(map);
+    // define array of points for polygon
+    var area = [ [-7.187593, 108.382063],[-7.188054, 108.382148],[-7.188643, 108.382646],[-7.188928, 108.383100],[-7.189127, 108.383381],[-7.189472, 108.383661],[-7.189639, 108.383409],[-7.189149, 108.382819],[-7.188670, 108.382299],[-7.188186, 108.381988],[-7.187813, 108.381811]];
+
+    // add polygon from area array points to map with some basic styling
+    L.polygon(area,{color:'green',opacity:.6}).addTo(map);
+
+	var firefoxIcon = L.icon({
+        iconUrl: "./ikon/sawah.svg",
+        iconSize: [25, 40], // size of the icon
+        });
+
+    L.marker([-7.190077, 108.381672], {icon: firefoxIcon}).bindPopup('Pesawahan Cibuntu').addTo(map);
+     // define array of points for polygon
+     var area = [[-7.188976, 108.379336],[-7.188672, 108.379669],[-7.189173, 108.379976],[-7.189307, 108.380346],[-7.188752, 108.380617],[-7.189092, 108.381248],[-7.189730, 108.381728],[-7.190385, 108.382471],[-7.190904, 108.382888],[-7.191094, 108.383601],[-7.191461, 108.383308],[-7.190859, 108.382045],[-7.190100, 108.381341],[-7.189400, 108.381063],[-7.189651, 108.380612],[-7.189666, 108.380138],[-7.189239, 108.379619],[-7.189141, 108.379494]];
+
+// add polygon from area array points to map with some basic styling
+L.polygon(area,{color:'green',opacity:.6}).addTo(map);
+
+	var firefoxIcon = L.icon({
+        iconUrl: "./ikon/sawah.svg",
+        iconSize: [25, 40], // size of the icon
+        });
+
+    L.marker([-7.193699, 108.390123], {icon: firefoxIcon}).bindPopup('Pesawahan Cimalayu').addTo(map);
+     // define array of points for polygon
+     var area = [[-7.194879, 108.390206],[-7.194197, 108.390466],[-7.193607, 108.390225],[-7.193266, 108.389993],[-7.192631, 108.389965],[-7.192769, 108.389603],[-7.193414, 108.389798]];
+
+// add polygon from area array points to map with some basic styling
+L.polygon(area,{color:'green',opacity:.6}).addTo(map);
+	var firefoxIcon = L.icon({
+        iconUrl: "./ikon/sawah.svg",
+        iconSize: [25, 40], // size of the icon
+        });
+
+    L.marker([-7.185466, 108.375958], {icon: firefoxIcon}).bindPopup('Pesawahan Koronjo').addTo(map);
+    // define array of points for polygon
+    var area = [[-7.184834, 108.375131],[-7.184749, 108.375459],[-7.185186, 108.375978],[-7.185446, 108.376188],[-7.185427, 108.376746],[-7.185746, 108.377153],[-7.185886, 108.376871],[-7.185715, 108.376620],[-7.185872, 108.376072],[-7.185886, 108.375789],[-7.185370, 108.375594],[-7.185089, 108.375436]];
+
+// add polygon from area array points to map with some basic styling
+L.polygon(area,{color:'green',opacity:.6}).addTo(map);
+	var firefoxIcon = L.icon({
+        iconUrl: "./ikon/sawah.svg",
+        iconSize: [25, 40], // size of the icon
+        });
+
+    L.marker([-7.180185, 108.379431], {icon: firefoxIcon}).bindPopup('Pesawahan Sukasenang').addTo(map);
+    // define array of points for polygon
+    var area = [[-7.179982, 108.378057],[-7.179973, 108.379505],[-7.180332, 108.380369],[-7.180802, 108.380601],[-7.181650, 108.380332],[-7.181954, 108.380063],[-7.181761, 108.379849],[-7.181033, 108.380285],[-7.180590, 108.380146],[-7.180305, 108.379682],[-7.180535, 108.379180],[-7.180176, 108.378995],[-7.180194, 108.378066]];
+
+// add polygon from area array points to map with some basic styling
+L.polygon(area,{color:'green',opacity:.6}).addTo(map);
+	var firefoxIcon = L.icon({
+        iconUrl: "./ikon/sawah.svg",
+        iconSize: [25, 40], // size of the icon
+        });
+
+    L.marker([-7.182977, 108.371081], {icon: firefoxIcon}).bindPopup('Pesawahan Kawalimukti').addTo(map);
+    // define array of points for polygon
+    var area = [[-7.182380, 108.372086],[-7.182768, 108.372268],[-7.183010, 108.371771],[-7.183371, 108.371374],[-7.183749, 108.371037],[-7.183557, 108.370821],[-7.183634, 108.370325],[-7.183020, 108.370093],[-7.182840, 108.370672],[-7.182544, 108.371285]];
+
+// add polygon from area array points to map with some basic styling
+L.polygon(area,{color:'green',opacity:.6}).addTo(map);
+	var firefoxIcon = L.icon({
+        iconUrl: "./ikon/sawah.svg",
+        iconSize: [25, 40], // size of the icon
+        });
+
+    L.marker([-7.190191, 108.369795], {icon: firefoxIcon}).bindPopup('Pesawahan Kawali').addTo(map);
+    // define array of points for polygon
+    var area = [[-7.190439, 108.369994],[-7.190834, 108.369663],[-7.190853, 108.369362],[-7.190853, 108.369116],[-7.190489, 108.369135],[-7.190400, 108.369428],[-7.190330, 108.369612],[-7.189997, 108.369624],[-7.189916, 108.369959],[-7.190171, 108.369975],[-7.190357, 108.369936]];
+
+// add polygon from area array points to map with some basic styling
+L.polygon(area,{color:'green',opacity:.6}).addTo(map);
+	var firefoxIcon = L.icon({
+        iconUrl: "./ikon/sawah.svg",
+        iconSize: [25, 40], // size of the icon
+        });
+
+    L.marker([-7.190974, 108.366887], {icon: firefoxIcon}).bindPopup('Pesawahan Astana').addTo(map);
+    // define array of points for polygon
+    var area = [[-7.189718, 108.367496],[-7.191068, 108.367395],[-7.192410, 108.367021],[-7.191693, 108.366417],[-7.191094, 108.365399],[-7.190758, 108.365479],[-7.190907, 108.366563],[-7.189529, 108.366751]];
+
+// add polygon from area array points to map with some basic styling
+L.polygon(area,{color:'green',opacity:.6}).addTo(map);
+	var firefoxIcon = L.icon({
+        iconUrl: "./ikon/sawah.svg",
+        iconSize: [25, 40], // size of the icon
+        });
+
+    L.marker([-7.187823, 108.364226], {icon: firefoxIcon}).bindPopup('Pesawahan Pronggol').addTo(map);
+     // define array of points for polygon
+     var area = [[-7.187626, 108.362991],[-7.188226, 108.363517],[-7.188190, 108.364330],[-7.188273, 108.364862],[-7.188350, 108.365190],[
+-7.187817, 108.365133],[-7.187557, 108.364753],[-7.187336, 108.364313],[-7.187517, 108.363815],[-7.187579, 108.363384]];
+
+// add polygon from area array points to map with some basic styling
+L.polygon(area,{color:'green',opacity:.6}).addTo(map);
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>
